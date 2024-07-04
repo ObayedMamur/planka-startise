@@ -10,7 +10,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://user:password@postgres:5432/planka_db
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/planka_db
       - SECRET_KEY=notsecretkey
 
       # - TRUST_PROXY=0
@@ -86,12 +86,12 @@ services:
       context: ./server
       dockerfile: ../config/development/Dockerfile.server
     environment:
-      - DATABASE_URL=postgresql://user:password@postgres:5432/planka_db
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/planka_db
 
-      # - DEFAULT_ADMIN_EMAIL=demo@demo.demo # Do not remove if you want to prevent this user from being edited/deleted
-      # - DEFAULT_ADMIN_PASSWORD=demo
-      # - DEFAULT_ADMIN_NAME=Demo Demo
-      # - DEFAULT_ADMIN_USERNAME=demo
+      - DEFAULT_ADMIN_EMAIL=obayed.wpdeveloper@gmail.com # Do not remove if you want to prevent this user from being edited/deleted
+      - DEFAULT_ADMIN_PASSWORD=Abcd#1234
+      - DEFAULT_ADMIN_NAME=Obayed Mamur
+      - DEFAULT_ADMIN_USERNAME=obayed
     working_dir: /app
     command: ["sh", "-c", "npm run db:init"]
     volumes:
@@ -102,18 +102,19 @@ services:
         condition: service_healthy
 
   postgres:
-    image: postgres:latest
+    image: postgres:14
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: planka_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      - POSTGRES_DB=planka_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5432:5432"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d planka"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d planka_db"]
       interval: 10s
       timeout: 5s
       retries: 5

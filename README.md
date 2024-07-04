@@ -19,7 +19,7 @@ docker compose -f docker-compose-dev.yml up --build
 
 ### Run This Command to start the development environment every time:
 ```sh
-docker-compose-dev.yml up -d
+docker compose -f docker-compose-dev.yml up -d
 ```
 
 See the official [development section](https://docs.planka.cloud/docs/Development).

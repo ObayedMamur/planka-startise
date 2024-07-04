@@ -1,40 +1,28 @@
 # Planka
 #### Elegant open source project tracking.
 
-![David (path)](https://img.shields.io/github/package-json/v/plankanban/planka) ![Docker Pulls](https://img.shields.io/docker/pulls/meltyshev/planka) ![GitHub](https://img.shields.io/github/license/plankanban/planka)
+## Development Setup
 
-![](https://raw.githubusercontent.com/plankanban/planka/master/demo.gif)
+### Environment Variables
+Ensure the following environment variables are set in your Docker configuration in `docker-compose-dev.yml`:
 
-[**Client demo**](https://plankanban.github.io/planka) (without server features).
+- `NODE_ENV=development` for all services to run in the development mode.
+- `DEFAULT_ADMIN_EMAIL=demo@demo.demo` - Email address for the admin account.
+- `DEFAULT_ADMIN_PASSWORD=demo` - Password for the admin account.
+- `DEFAULT_ADMIN_NAME=Demo Demo` - Full name of the admin.
+- `DEFAULT_ADMIN_USERNAME=demo` - Username for the admin login.
 
-## Features
+### For First Time Setup Run this command only:
+```sh
+docker compose -f docker-compose-dev.yml up --build
+```
 
-- Create projects, boards, lists, cards, labels and tasks
-- Add card members, track time, set due dates, add attachments, write comments
-- Markdown support in card description and comments
-- Filter by members and labels
-- Customize project backgrounds
-- Real-time updates
-- Internal notifications
-- Multiple interface languages
-- Single sign-on via OpenID Connect
+### Run This Command to start the development environment every time:
+```sh
+docker-compose-dev.yml up -d
+```
 
-## How to deploy Planka
-
-There are many ways to install Planka, [check them out](https://docs.planka.cloud/docs/intro).
-
-For configuration, please see the [configuration section](https://docs.planka.cloud/docs/category/configuration).
-
-## Contact
-
-- If you want to get a hosted version of Planka, you can contact us via email contact@planka.cloud
-- For any security issues, please do not create a public issue on GitHub, instead please write to security@planka.cloud
-
-We do NOT offer any public support via email, please use GitHub.
-
-## Development
-
-See the [development section](https://docs.planka.cloud/docs/Development).
+See the official [development section](https://docs.planka.cloud/docs/Development).
 
 ## Tech stack
 
@@ -45,7 +33,3 @@ See the [development section](https://docs.planka.cloud/docs/Development).
 ## License
 
 Planka is [AGPL-3.0 licensed](https://github.com/plankanban/planka/blob/master/LICENSE).
-
-## Contributors
-
-[![](https://contrib.rocks/image?repo=plankanban/planka)](https://github.com/plankanban/planka/graphs/contributors)
